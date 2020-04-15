@@ -5,21 +5,42 @@ class Calculator {
   result = 0;
   expression = '';
   localHistory = [];
+  operationDataTypes = ['clean','pow','symbol','backspace'];
+  symbolTypes = ['*','/','+','-','%',];
   constructor() {
     console.log('calc ready');
   }
-
+  IsLastCharacterSymbol(){
+    let lastCaracter = this.expression.slice(-1);
+    let isTrue = this.symbolTypes.indexOf(lastCaracter) >= 0;
+    console.log(isTrue)
+    return isTrue;
+  }
+  IsExpressionHasSymbol() {
+    for (let i = 0; i < this.symbolTypes.length; i++) {
+      if (this.expression.includes(this.symbolTypes[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
   KeyPressNumber(number) {
     this.expression += number;
     this.expressionDiv.innerHTML = this.expression;
   }
   KeyPressMathSymbol(symbol) {
-    this.expression += symbol;
-    this.expressionDiv.innerHTML = this.expression;
+    if(this.IsLastCharacterSymbol()) {
+      this.expression = this.expression.slice(0,-1);
+      this.expression += symbol;
+      this.expressionDiv.innerHTML = this.expression;
+    } else {
+      this.expression += symbol;
+      this.expressionDiv.innerHTML = this.expression;
+    }
   }
   KeyPressEqual() {
     this.expressionDiv.innerHTML = eval(this.expression);
-    this.expression = this.result;
+    this.expression = eval(this.expression).toString();
   }
   KeyPressClean() {
     this.expression = '';
@@ -37,9 +58,17 @@ class Calculator {
   CleanResultDiv() {
     this.resultDiv.innerHTML = "";
   }
-
   TransitionalResult() {
-    this.resultDiv.innerHTML = eval(this.expression);
+    if(calc.IsExpressionHasSymbol()) {
+      if(this.IsLastCharacterSymbol()) {
+        this.resultDiv.innerHTML = '';
+      } else {
+        this.resultDiv.innerHTML = eval(this.expression);
+      }
+    } else {
+      this.resultDiv.innerHTML = '';
+    }
+
   }
 }
 
@@ -63,7 +92,6 @@ calc.buttonSection.addEventListener('click', (e)=> {
     calc.KeyPressNumber(targetValue);
   }
   if(dataType == 'symbol') {
-    if (calc.expression[calc.expression.length-1] != "*" && calc.expression[calc.expression.length-1] != "+" && calc.expression[calc.expression.length-1] != "-" && calc.expression[calc.expression.length-1] != "/" && calc.expression[calc.expression.length-1] != "pow"  && calc.expression[calc.expression.length-1] != "%" && calc.expression[calc.expression.length-1] != "=")
     calc.KeyPressMathSymbol(targetValue);
   }
   if(dataType == 'equal') {
@@ -76,8 +104,6 @@ calc.buttonSection.addEventListener('click', (e)=> {
     calc.KeyPressBackspace();
   }
   if(dataType != null && dataType != "" && dataType != undefined) {
-    if(calc.expression[calc.expression.length-1] != "*" && calc.expression[calc.expression.length-1] != "+" && calc.expression[calc.expression.length-1] != "-" && calc.expression[calc.expression.length-1] != "/" && calc.expression[calc.expression.length-1] != "pow"  && calc.expression[calc.expression.length-1] != "%" && calc.expression[calc.expression.length-1] != "=" && calc.expression[calc.expression.length-1] != "backspace") {
-      calc.TransitionalResult();
-    }
+    calc.TransitionalResult();
   }
 });

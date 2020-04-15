@@ -17,6 +17,8 @@ enter css
   --circle-color: #fff;
   //--dark-circle-color: #666;
 
+  --extension-text-color: #b8b8b8;
+
   --btn-dark-shadow: rgba(0,0,0,0.2);
   --btn-light-shadow: rgba(255,255,255,1);
   --pink-color: #e91e63;
@@ -48,6 +50,7 @@ body {
         height: var(--line-heigh);
         .switch-button {
           outline: none;
+          cursor: pointer;
           .switch {
             position: relative;
             display: inline-block;
@@ -104,6 +107,7 @@ body {
           }
         }
         .history-button {
+          cursor: pointer;
           border: none;
           outline: none;
           background-color: transparent;
@@ -116,23 +120,25 @@ body {
         }
       }
       .expression {
-        height: var(--line-heigh);
-        font-size: var(--line-heigh);
-        line-height: var(--line-heigh);
-        text-align: right;
-        max-width: 320px;
-        overflow: hidden;
-        //border: none;
-        //background-color: var(--bg-color); todo
-        // input
-      }
-      .result {
         height: var(--small-line-height);
         font-size: var(--small-line-height);
         line-height: var(--small-line-height);
         text-align: right;
         max-width: 320px;
         overflow: hidden;
+        color: var(--extension-text-color);
+        //border: none;
+        //background-color: var(--bg-color); todo
+        // input
+      }
+      .result {
+        height: var(--line-heigh);
+        font-size: var(--line-heigh);
+        line-height: var(--line-heigh);
+        text-align: right;
+        max-width: 320px;
+        overflow: hidden;
+        font-weight: 900;
       }
     }
     hr {
@@ -147,6 +153,7 @@ body {
       display: grid;
       grid-template-columns: repeat(4, 80px);
       .calc-button {
+        cursor: pointer;
         color: var(--color);
         box-sizing: border-box;
         font-size: 26px;
