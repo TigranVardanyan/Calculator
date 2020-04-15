@@ -3,6 +3,7 @@ enter css
  */
 :root {
   --line-heigh: 46px;
+  --small-line-height: 40px;
 
   --bg-color: #f6f6f6;
   //--dark-bg-color: #404040;
@@ -21,7 +22,7 @@ enter css
   --pink-color: #e91e63;
   --yellow-color: #ffc72e;
   --green-color: #27eca4;
-  --purpule-color: #9f1ee9;
+  --purple-color: #9f1ee9;
 }
 
 body {
@@ -43,6 +44,7 @@ body {
       .zz {
         display: flex;
         justify-content: space-between;
+        align-items: start;
         height: var(--line-heigh);
         .switch-button {
           .switch {
@@ -102,17 +104,27 @@ body {
         }
         .history-button {
           border: none;
+          outline: none;
           background-color: transparent;
           color: var(--color);
           line-height: 26px;
           font-size: 26px;
+          &:hover {
+            opacity: 0.7;
+          }
         }
       }
       .expression {
         height: var(--line-heigh);
+        font-size: var(--line-heigh);
+        line-height: var(--line-heigh);
+        text-align: right;
       }
       .result {
-        height: var(--line-heigh);
+        height: var(--small-line-height);
+        font-size: var(--small-line-height);
+        line-height: var(--small-line-height);
+        text-align: right;
       }
     }
     hr {
@@ -129,6 +141,8 @@ body {
       .calc-button {
         color: var(--color);
         box-sizing: border-box;
+        font-size: 26px;
+        font-weight: bold;
         margin: 10px;
         width: 60px;
         height: 60px;
@@ -141,9 +155,38 @@ body {
         background-color: transparent;
         border-radius: 13px;
         padding: 0;
+        display: flex;
+        justify-content: center;
+        align-self: center;
         &:hover {
           box-shadow: 1px 1px 1px 1px var(--btn-light-shadow), -1px -1px 1px 1px  var(--btn-dark-shadow);
         }
+        &.color-green {
+          color: var(--green-color);
+          font-size: 36px;
+          line-height: 36px;
+        }
+        &.color-pink {
+          color: var(--pink-color);
+          font-size: 36px;
+          line-height: 36px;
+        }
+        &.color-pink-reverse {
+          background-color: var(--pink-color);
+          color: #fff;
+          font-size: 36px;
+          line-height: 36px;
+        }
+        &.color-purple {
+          color: var(--purple-color);
+          font-size: 10px;
+          line-height: 10px;
+        }
+        &.color-yellow {
+          color: var(--yellow-color);
+          font-size: 36px;
+          line-height: 36px;
+        } 
       }
     }
   }
