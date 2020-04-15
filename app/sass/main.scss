@@ -3,7 +3,7 @@ enter css
  */
 :root {
   --line-heigh: 46px;
-  --small-line-height: 40px;
+  --small-line-height: 36px;
 
   --bg-color: #f6f6f6;
   //--dark-bg-color: #404040;
@@ -47,6 +47,7 @@ body {
         align-items: start;
         height: var(--line-heigh);
         .switch-button {
+          outline: none;
           .switch {
             position: relative;
             display: inline-block;
@@ -119,12 +120,19 @@ body {
         font-size: var(--line-heigh);
         line-height: var(--line-heigh);
         text-align: right;
+        max-width: 320px;
+        overflow: hidden;
+        //border: none;
+        //background-color: var(--bg-color); todo
+        // input
       }
       .result {
         height: var(--small-line-height);
         font-size: var(--small-line-height);
         line-height: var(--small-line-height);
         text-align: right;
+        max-width: 320px;
+        overflow: hidden;
       }
     }
     hr {
@@ -186,7 +194,10 @@ body {
           color: var(--yellow-color);
           font-size: 36px;
           line-height: 36px;
-        } 
+        }
+        sup, i {
+          pointer-events: none;
+        }
       }
     }
   }
