@@ -25,6 +25,15 @@ enter css
   --yellow-color: #ffc72e;
   --green-color: #27eca4;
   --purple-color: #9f1ee9;
+
+
+  /*
+  button
+  */
+  --button-line-heigh: 40px;
+  --button-heigh: 60px;
+  --button-number-fz:26px;
+  --button-ect-fz: 36px;
 }
 
 body {
@@ -79,7 +88,6 @@ body {
             -webkit-transition: .4s;
             transition: .4s;
           }
-
           .slider:before {
             position: absolute;
             content: "";
@@ -96,12 +104,9 @@ body {
             -ms-transform: translateX(26px);
             transform: translateX(26px);
           }
-
-          /* Rounded sliders */
           .slider.round {
             border-radius: 30px;
           }
-
           .slider.round:before {
             border-radius: 50%;
           }
@@ -156,13 +161,13 @@ body {
         cursor: pointer;
         color: var(--color);
         box-sizing: border-box;
-        font-size: 26px;
+        font-size: var(--button-number-fz);
         font-weight: bold;
         margin: 10px;
-        width: 60px;
-        height: 60px;
+        width: var(--button-heigh);
+        height: var(--button-heigh);
         text-align: center;
-        line-height: 40px;
+        line-height: var(--button-line-heigh);
         background-color: var(--bg-color);
         box-shadow: 1px 1px 1px 1px var(--btn-dark-shadow), -1px -1px 1px 1px var(--btn-light-shadow);
         outline: none;
@@ -178,19 +183,19 @@ body {
         }
         &.color-green {
           color: var(--green-color);
-          font-size: 36px;
-          line-height: 36px;
+          font-size: var(--button-ect-fz);
+          line-height: var(--button-ect-fz);
         }
         &.color-pink {
           color: var(--pink-color);
-          font-size: 36px;
-          line-height: 36px;
+          font-size: var(--button-ect-fz);
+          line-height: var(--button-ect-fz);
         }
         &.color-pink-reverse {
           background-color: var(--pink-color);
           color: #fff;
-          font-size: 36px;
-          line-height: 36px;
+          font-size: var(--button-ect-fz);
+          line-height: var(--button-ect-fz);
         }
         &.color-purple {
           color: var(--purple-color);
@@ -199,8 +204,8 @@ body {
         }
         &.color-yellow {
           color: var(--yellow-color);
-          font-size: 36px;
-          line-height: 36px;
+          font-size: var(--button-ect-fz);
+          line-height: var(--button-ect-fz);
         }
         sup, i {
           pointer-events: none;
