@@ -24,10 +24,9 @@
                 <i class="fas fa-moon"></i>
                 <i class="fas fa-sun"></i>
               </span>
-
             </label>
           </div>
-          <button class="history-button">
+          <button class="history-button" id="history-button">
             <i class="fas fa-history"></i>
           </button>
         </div>
@@ -42,8 +41,8 @@
     <hr>
     <div class="calc-body">
       <button class="calc-button color-yellow" data-type="clean" value="clean">C</button>
-      <button class="calc-button color-green" data-type="pow" value="pow">x<sup>2</sup></button>
-      <button class="calc-button color-green" data-type="symbol" value="%"><i class="fas fa-percentage"></i></button>
+      <button class="calc-button color-green disabled" data-type="pow" value="pow">x<sup>2</sup></button>
+      <button class="calc-button color-green disabled" data-type="symbol" value="%"><i class="fas fa-percentage"></i></button>
       <button class="calc-button color-yellow" data-type="backspace" value="backspace"><i class="fas fa-backspace"></i></button>
       <button class="calc-button" data-type="number" value="7">7</button>
       <button class="calc-button" data-type="number" value="8">8</button>
@@ -58,9 +57,43 @@
       <button class="calc-button" data-type="number" value="3">3</button>
       <button class="calc-button color-pink" data-type="symbol" value="-"><i class="fas fa-minus"></i></button>
       <button class="calc-button" data-type="number" value="0">0</button>
-      <button class="calc-button color-purple" data-type="dot" value="."><i class="fas fa-circle"></i></button>
+      <button class="calc-button color-purple disabled" data-type="dot" value="."><i class="fas fa-circle"></i></button>
       <button class="calc-button color-pink-reverse" data-type="equal" value="="><i class="fas fa-equals"></i></button>
       <button class="calc-button color-pink" data-type="symbol" value="+"><i class="fas fa-plus"></i></button>
+    </div>
+    <div class="history" id="history">
+      <div class="exp-res">
+        <div class="row">
+          <div class="expression-history">8/9</div>
+        </div>
+        <div class="row">
+          <div class="expression-history">0.89</div>
+        </div>
+      </div>
+      <div class="exp-res">
+        <div class="row">
+          <div class="expression-history">8/9</div>
+        </div>
+        <div class="row">
+          <div class="expression-history">0.89</div>
+        </div>
+      </div>
+      <div class="exp-res">
+        <div class="row">
+          <div class="expression-history">8/9</div>
+        </div>
+        <div class="row">
+          <div class="expression-history">0.89</div>
+        </div>
+      </div>
+      <div class="exp-res">
+        <div class="row">
+          <div class="expression-history">8/9</div>
+        </div>
+        <div class="row">
+          <div class="expression-history">0.89</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

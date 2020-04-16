@@ -1,19 +1,26 @@
 class Calculator {
   buttonSection = document.querySelector('.calc-body');
   resultDiv = document.getElementById('result');
-  expressionDiv = document.getElementById('expression');
   result = 0;
+  expressionDiv = document.getElementById('expression');
   expression = '';
-  localHistory = [];
+  historySection = document.getElementById('history');
+  historyButton = document.getElementById('history-button');
+  isHistoryButtonToggled = true;
+  localHistory = JSON.parse(localStorage.getItem('localHistory'));
   operationDataTypes = ['clean','pow','symbol','backspace'];
   symbolTypes = ['*','/','+','-','%',];
+  date;
   constructor() {
-    console.log('calc ready');
+    this.date = new Date();
+    if (localStorage.getItem("localHistory")) {
+    } else {
+      localStorage.setItem('localHistory', '');
+    }
   }
   IsLastCharacterSymbol(){
     let lastCaracter = this.expression.slice(-1);
     let isTrue = this.symbolTypes.indexOf(lastCaracter) >= 0;
-    console.log(isTrue)
     return isTrue;
   }
   IsExpressionHasSymbol() {
@@ -39,8 +46,15 @@ class Calculator {
     }
   }
   KeyPressEqual() {
-    this.expressionDiv.innerHTML = eval(this.expression);
-    this.expression = eval(this.expression).toString();
+    this.result = eval(this.expression).toFixed(2);
+    this.localHistory.push(
+      {
+          date: this.date.toLocaleTimeString(), expression: this.expression, result: this.result
+      });
+    localStorage.setItem("localHistory", JSON.stringify(this.localHistory));
+    console.log(localStorage.getItem('localHistory'));
+    this.expression = this.result.toString();
+    this.expressionDiv.innerHTML = this.expression;
   }
   KeyPressClean() {
     this.expression = '';
@@ -63,14 +77,48 @@ class Calculator {
       if(this.IsLastCharacterSymbol()) {
         this.resultDiv.innerHTML = '';
       } else {
-        this.resultDiv.innerHTML = eval(this.expression);
+        this.resultDiv.innerHTML =  (eval(this.expression)).toFixed(2);
       }
     } else {
       this.resultDiv.innerHTML = '';
     }
+  }
+  ToggleHistorySection() {
+    if (this.isHistoryButtonToggled) {
+      this.isHistoryButtonToggled = !this.isHistoryButtonToggled;
+      this.historySection.classList.add('animate');
+      this.buttonSection.classList.add('animate');
+      console.log("opened");
+      console.log(this.localHistory);
+      let historyBuffer = "";
+      let reversedLocalHistory = this.localHistory.reverse();
+      for (let i = 0; i < this.localHistory.length; i++) {
+        historyBuffer +=
+          `<div class="exp-res">
+            <div class="row">
+              <div class="history-time">${reversedLocalHistory[i].date}</div>
+            </div>
+            <div class="row">
+              <div class="expression-history">${reversedLocalHistory[i].expression}</div>
+            </div>
+            <div class="row">
+              <div  class="expression-history">${reversedLocalHistory[i].result}</div>
+            </div>
+           </div>
+           <br>
+`
+      }
+      this.historySection.innerHTML = historyBuffer
+    } else {
+      this.isHistoryButtonToggled = !this.isHistoryButtonToggled;
+      this.historySection.classList.remove('animate');
+      this.buttonSection.classList.remove('animate');
+      console.log('closed')
+    }
 
   }
 }
+
 
 
 // console.log(1+2+3*4);
@@ -107,3 +155,8 @@ calc.buttonSection.addEventListener('click', (e)=> {
     calc.TransitionalResult();
   }
 });
+calc.historyButton.addEventListener('click', ()=> {
+  calc.ToggleHistorySection();
+});
+
+

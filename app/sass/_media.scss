@@ -8,20 +8,24 @@ for media queries only
     --button-heigh: 60px;
     --button-fz: 22px;
     --button-ect-fz: 30px;
+    --section-padding: 10px;
   }
   .wrapper {
     max-width: 320px;
     .calculator {
       .calc-header{
-        padding: 10px;
+        padding: var(--section-padding);
         .expression, .result {
           max-width: 280px;
         }
       }
       .calc-body {
-        padding: 10px;
+        padding: var(--section-padding);
         grid-template-columns: repeat(4, 70px);
-
+      }
+      .history {
+        padding: var(--section-padding);
+        grid-template-columns: 280px;
       }
     }
   }

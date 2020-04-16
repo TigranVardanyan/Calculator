@@ -1,9 +1,15 @@
 /*
 enter css
  */
+
 :root {
+  -webkit-tap-highlight-color: transparent; //removes blue highlighting
+
   --line-heigh: 46px;
   --small-line-height: 36px;
+  --time-line-height: 26px;
+
+  --section-padding: 26px;
 
   --bg-color: #f6f6f6;
   //--dark-bg-color: #404040;
@@ -36,7 +42,12 @@ enter css
   --button-ect-fz: 36px;
 }
 
+* {
+  transition: 0.4s all ease-in-out;
+}
+
 body {
+
   margin: 0;
   padding: 0;
   background-color: #e3e3e3;
@@ -47,11 +58,13 @@ body {
   justify-content: center;
   .calculator {
     color: var(--color);
+    overflow: hidden;
     margin-top: 20px;
     box-shadow: 0 2px 18px 3px rgba(0,0,0,0.2);
     background-color: var(--bg-color);
+    position: relative;
     .calc-header {
-      padding: 26px;
+      padding: var(--section-padding);
       .zz {
         display: flex;
         justify-content: space-between;
@@ -119,7 +132,7 @@ body {
           color: var(--color);
           line-height: 26px;
           font-size: 26px;
-          &:hover {
+          &:active {
             opacity: 0.7;
           }
         }
@@ -154,9 +167,14 @@ body {
       height: 0px;
     }
     .calc-body {
-      padding: 26px;
+      padding: var(--section-padding);
       display: grid;
       grid-template-columns: repeat(4, 80px);
+      opacity: 1;
+      transition: 0.7s all ease-in-out;
+      &.animate {
+        opacity: 0;
+      }
       .calc-button {
         cursor: pointer;
         color: var(--color);
@@ -178,7 +196,7 @@ body {
         display: flex;
         justify-content: center;
         align-self: center;
-        &:hover {
+        &:active {
           box-shadow: 1px 1px 1px 1px var(--btn-light-shadow), -1px -1px 1px 1px  var(--btn-dark-shadow);
         }
         &.color-green {
@@ -210,6 +228,55 @@ body {
         sup, i {
           pointer-events: none;
         }
+      }
+      .disabled {
+        pointer-events: none;
+        opacity: 0.3;
+      }
+    }
+    .history {
+      transition: 0.4s all ease-in-out;
+      padding: var(--section-padding);
+      position: absolute;
+      top:100%;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      grid-template-columns: 1fr;
+      background-color: var(--bg-color);
+      z-index: 10;
+      opacity: 0.2;
+      &.animate {
+        top: calc(var(--section-padding) + var(--line-heigh));
+        opacity: 1;
+      }
+      .expression-history {
+        font-size: var(--small-line-height);
+        line-height: var(--small-line-height);
+        text-align: right;
+        max-width: 320px;
+        overflow: hidden;
+        color: var(--extension-text-color);
+        overflow-wrap: break-word;
+      }
+      .result-history {
+        font-size: var(--line-heigh);
+        line-height: var(--line-heigh);
+        text-align: right;
+        max-width: 320px;
+        overflow: hidden;
+        font-weight: 900;
+        overflow-wrap: break-word;
+      }
+      .history-time {
+        height: var(--time-line-height);
+        font-size: var(--time-line-height);
+        line-height: var(--time-line-height);
+        text-align: left;
+        max-width: 320px;
+        overflow: hidden;
+        color: var(--color);
       }
     }
   }
