@@ -37,13 +37,16 @@ class Calculator {
     this.expressionDiv.innerHTML = this.expression;
   }
   KeyPressMathSymbol(symbol) {
-    if(this.IsLastCharacterSymbol()) {
-      this.expression = this.expression.slice(0,-1);
-      this.expression += symbol;
-      this.expressionDiv.innerHTML = this.expression;
+    if(this.expression.length != 0) {
+      if(this.IsLastCharacterSymbol()) {
+        this.expression = this.expression.slice(0,-1);
+        this.expression += symbol;
+        this.expressionDiv.innerHTML = this.expression;
+      } else {
+        this.expression += symbol;
+        this.expressionDiv.innerHTML = this.expression;
+      }
     } else {
-      this.expression += symbol;
-      this.expressionDiv.innerHTML = this.expression;
     }
   }
   KeyPressEqual() {
@@ -89,7 +92,6 @@ class Calculator {
       this.isHistoryButtonToggled = !this.isHistoryButtonToggled;
       this.historySection.classList.add('animate');
       this.buttonSection.classList.add('animate');
-      console.log("opened");
       console.log(this.localHistory);
       let historyBuffer = "";
       let reversedLocalHistory = this.localHistory.reverse();
@@ -114,29 +116,17 @@ class Calculator {
       this.isHistoryButtonToggled = !this.isHistoryButtonToggled;
       this.historySection.classList.remove('animate');
       this.buttonSection.classList.remove('animate');
-      console.log('closed')
     }
 
   }
 }
 
-
-
-// console.log(1+2+3*4);
-
 let calc = new Calculator();
 let dataType;
 let targetValue;
 calc.buttonSection.addEventListener('click', (e)=> {
-  // console.log(e.target);
-
-  // if(e.target.tagName != 'BUTTON') {
-  //   dataType = e.target.parentElement.dataset.type;
-  //   targetValue = e.target.parentElement.value;
-  // } else {
     dataType = e.target.getAttribute('data-type');
     targetValue = e.target.value;
-  //}
   if(dataType == 'number') {
     calc.KeyPressNumber(targetValue);
   }
