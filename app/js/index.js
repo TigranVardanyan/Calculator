@@ -7,15 +7,16 @@ class Calculator {
   historySection = document.getElementById('history');
   historyButton = document.getElementById('history-button');
   isHistoryButtonToggled = true;
-  localHistory = JSON.parse(localStorage.getItem('localHistory'));
+  localHistory = [];
   operationDataTypes = ['clean','pow','symbol','backspace'];
   symbolTypes = ['*','/','+','-','%',];
   date;
   constructor() {
     this.date = new Date();
     if (localStorage.getItem("localHistory")) {
+      this.localHistory = JSON.parse(localStorage.getItem('localHistory'))
     } else {
-      localStorage.setItem('localHistory', '');
+      localStorage.setItem('localHistory', JSON.stringify(this.localHistory));
     }
   }
   IsLastCharacterSymbol(){
