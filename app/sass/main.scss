@@ -175,7 +175,7 @@ body {
         box-sizing: border-box;
         font-size: var(--button-number-fz);
         font-weight: bold;
-        margin: 10px;
+        margin: 5px;
         width: var(--button-heigh);
         height: var(--button-heigh);
         text-align: center;
@@ -189,7 +189,7 @@ body {
         padding: 0;
         display: flex;
         justify-content: center;
-        align-self: center;
+        align-items: center;
         &:active {
           box-shadow: 1px 1px 1px 1px var(--btn-light-shadow), -1px -1px 1px 1px  var(--btn-dark-shadow);
         }
@@ -231,6 +231,7 @@ body {
     .history {
       //transition: 0.4s all ease-in-out;
       padding: var(--section-padding);
+      box-sizing: border-box;
       position: absolute;
       top:100%;
       display: flex;

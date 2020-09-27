@@ -8,7 +8,7 @@ class Calculator {
   historyButton = document.getElementById('history-button');
   isHistoryButtonToggled = true;
   localHistory = [];
-  operationDataTypes = ['clean','pow','symbol','backspace'];
+  //operationDataTypes = ['clean','pow','symbol','backspace']; //not used
   symbolTypes = ['*','/','+','-','%',];
   date;
   constructor() {
@@ -20,8 +20,8 @@ class Calculator {
     }
   }
   IsLastCharacterSymbol(){
-    let lastCaracter = this.expression.slice(-1);
-    let isTrue = this.symbolTypes.indexOf(lastCaracter) >= 0;
+    let lastCharacter = this.expression.slice(-1);
+    let isTrue = this.symbolTypes.indexOf(lastCharacter) >= 0;
     return isTrue;
   }
   IsExpressionHasSymbol() {
@@ -56,7 +56,7 @@ class Calculator {
           date: this.date.toLocaleTimeString(), expression: this.expression, result: this.result
       });
     localStorage.setItem("localHistory", JSON.stringify(this.localHistory));
-    console.log(localStorage.getItem('localHistory'));
+    //console.log(localStorage.getItem('localHistory'));
     this.expression = this.result.toString();
     this.expressionDiv.innerHTML = this.expression;
   }
